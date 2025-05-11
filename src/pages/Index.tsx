@@ -2,7 +2,9 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import MoodTracker from "@/components/MoodTracker";
+import Chat from "@/components/Chat";
 import { useToast } from "@/components/ui/use-toast";
+import { Link } from 'react-router-dom';
 
 const Index = () => {
   const { toast } = useToast();
@@ -56,57 +58,71 @@ const Index = () => {
       </div>
       
       <div className="space-y-6">
-        <MoodTracker />
-        
-        <Card className="bg-gradient-to-r from-secondary to-secondary/50">
-          <CardHeader>
-            <CardTitle className="text-xl">Today's Inspiration</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-col items-center text-center">
-              <p className="text-lg font-medium italic mb-4">{quote}</p>
-              <button 
-                onClick={refreshQuote}
-                className="text-sm text-primary hover:text-primary/80 underline"
-              >
-                Show another quote
-              </button>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div>
+            <MoodTracker />
+            
+            <Card className="bg-gradient-to-r from-secondary to-secondary/50 mt-6">
+              <CardHeader>
+                <CardTitle className="text-xl">Today's Inspiration</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-col items-center text-center">
+                  <p className="text-lg font-medium italic mb-4">{quote}</p>
+                  <button 
+                    onClick={refreshQuote}
+                    className="text-sm text-primary hover:text-primary/80 underline"
+                  >
+                    Show another quote
+                  </button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+          
+          <Chat />
+        </div>
         
         <div className="grid grid-cols-2 gap-4">
-          <Card className="hover:shadow-md transition-all">
-            <CardContent className="p-4 flex flex-col items-center justify-center h-full">
-              <div className="text-4xl mb-2">📓</div>
-              <h3 className="text-center font-medium">Journal</h3>
-              <p className="text-xs text-center text-muted-foreground">Express your thoughts</p>
-            </CardContent>
-          </Card>
+          <Link to="/journal">
+            <Card className="hover:shadow-md transition-all">
+              <CardContent className="p-4 flex flex-col items-center justify-center h-full">
+                <div className="text-4xl mb-2">📓</div>
+                <h3 className="text-center font-medium">Journal</h3>
+                <p className="text-xs text-center text-muted-foreground">Express your thoughts</p>
+              </CardContent>
+            </Card>
+          </Link>
           
-          <Card className="hover:shadow-md transition-all">
-            <CardContent className="p-4 flex flex-col items-center justify-center h-full">
-              <div className="text-4xl mb-2">🧘</div>
-              <h3 className="text-center font-medium">Breathing</h3>
-              <p className="text-xs text-center text-muted-foreground">Find calm with breath</p>
-            </CardContent>
-          </Card>
+          <Link to="/breathing">
+            <Card className="hover:shadow-md transition-all">
+              <CardContent className="p-4 flex flex-col items-center justify-center h-full">
+                <div className="text-4xl mb-2">🧘</div>
+                <h3 className="text-center font-medium">Breathing</h3>
+                <p className="text-xs text-center text-muted-foreground">Find calm with breath</p>
+              </CardContent>
+            </Card>
+          </Link>
           
-          <Card className="hover:shadow-md transition-all">
-            <CardContent className="p-4 flex flex-col items-center justify-center h-full">
-              <div className="text-4xl mb-2">💭</div>
-              <h3 className="text-center font-medium">Affirmations</h3>
-              <p className="text-xs text-center text-muted-foreground">Positive thoughts</p>
-            </CardContent>
-          </Card>
+          <Link to="/affirmations">
+            <Card className="hover:shadow-md transition-all">
+              <CardContent className="p-4 flex flex-col items-center justify-center h-full">
+                <div className="text-4xl mb-2">💭</div>
+                <h3 className="text-center font-medium">Affirmations</h3>
+                <p className="text-xs text-center text-muted-foreground">Positive thoughts</p>
+              </CardContent>
+            </Card>
+          </Link>
           
-          <Card className="hover:shadow-md transition-all">
-            <CardContent className="p-4 flex flex-col items-center justify-center h-full">
-              <div className="text-4xl mb-2">📊</div>
-              <h3 className="text-center font-medium">Progress</h3>
-              <p className="text-xs text-center text-muted-foreground">Track your journey</p>
-            </CardContent>
-          </Card>
+          <Link to="/progress">
+            <Card className="hover:shadow-md transition-all">
+              <CardContent className="p-4 flex flex-col items-center justify-center h-full">
+                <div className="text-4xl mb-2">📊</div>
+                <h3 className="text-center font-medium">Progress</h3>
+                <p className="text-xs text-center text-muted-foreground">Track your journey</p>
+              </CardContent>
+            </Card>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -175,14 +174,14 @@ const Affirmations: React.FC = () => {
         <CardFooter className="flex justify-center">
           <div className="flex gap-2">
             <Button 
-              variant="subtle" 
+              variant="secondary" 
               className={filter === 'all' ? "bg-primary/20" : ""}
               onClick={() => setFilter('all')}
             >
               All
             </Button>
             <Button 
-              variant="subtle"
+              variant="secondary"
               className={filter === 'favorites' ? "bg-primary/20" : ""}
               onClick={() => setFilter('favorites')}
             >
