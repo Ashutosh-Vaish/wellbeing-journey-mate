@@ -23,7 +23,6 @@ stage('Build & Test') {
 pipeline {
     agent any
     triggers {
-        githubPush()
     }
     environment {
         IMAGE_NAME = 'juskythehusky/wellbeing-journey-mate'
