@@ -6,6 +6,7 @@ pipeline {
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
         IMAGE_NAME = 'your-dockerhub-username/wellbeing-journey-mate'
+        DOCKER_IMAGE_NAME = 'your-dockerhub-username/wellbeing-journey-mate'
     }
     stages {
         stage('Checkout') {
@@ -21,10 +22,20 @@ pipeline {
                 sh 'npm run build'
             }
         }
-        stage('Docker Build & Push') {
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t ${DOCKER_IMAGE_NAME} .'
+            }
+        }
+        stage('Push Docker Images') {
             steps {
                 script {
-                    docker.build("${IMAGE_NAME}:$BUILD_NUMBER").push()
+                    withCredentials([usernamePassword(credentialsId: "DockerHub", passwordVariable: "dockerpass", usernameVariable: "dockerhubuser")]) {
+                        sh "docker login -u ${env.dockerhubuser} -p ${env.dockerpass}"
+                        echo 'login successful'
+                        sh "docker tag ${DOCKER_IMAGE_NAME} ${env.dockerhubuser}/${DOCKER_IMAGE_NAME}:latest"
+                        sh "docker push ${env.dockerhubuser}/${DOCKER_IMAGE_NAME}:latest"
+                    }
                 }
             }
         }
