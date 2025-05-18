@@ -1,6 +1,3 @@
-tools {
-  nodejs 'Node 14'        // name must match your Global Tool config
-}
 stages {
   …
   stage('Build & Test') {
@@ -10,7 +7,8 @@ stages {
     }
   }
   …
-}stage('Build & Test') {
+}
+stage('Build & Test') {
   agent {
     docker {
       image 'node:18-alpine'
@@ -21,7 +19,8 @@ stages {
     sh 'npm ci'
     sh 'npm test'
   }
-}pipeline {
+}
+pipeline {
     agent any
     triggers {
         githubPush()
