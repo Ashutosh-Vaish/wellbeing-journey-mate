@@ -4,8 +4,8 @@ pipeline {
         githubPush()
     }
     environment {
-        IMAGE_NAME = 'your-dockerhub-username/wellbeing-journey-mate'
-        DOCKER_IMAGE_NAME = 'your-dockerhub-username/wellbeing-journey-mate'
+        IMAGE_NAME = 'juskythehusky/wellbeing-journey-mate'
+        DOCKER_IMAGE_NAME = 'juskythehusky/wellbeing-journey-mate'
     }
     stages {
         stage('Checkout') {
