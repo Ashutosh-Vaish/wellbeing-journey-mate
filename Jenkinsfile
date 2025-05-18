@@ -4,7 +4,6 @@ pipeline {
         githubPush()
     }
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
         IMAGE_NAME = 'your-dockerhub-username/wellbeing-journey-mate'
         DOCKER_IMAGE_NAME = 'your-dockerhub-username/wellbeing-journey-mate'
     }
