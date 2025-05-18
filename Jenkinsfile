@@ -1,4 +1,27 @@
-pipeline {
+tools {
+  nodejs 'Node 14'        // name must match your Global Tool config
+}
+stages {
+  …
+  stage('Build & Test') {
+    steps {
+      sh 'npm ci'
+      sh 'npm test'
+    }
+  }
+  …
+}stage('Build & Test') {
+  agent {
+    docker {
+      image 'node:18-alpine'
+      args  '-u root'
+    }
+  }
+  steps {
+    sh 'npm ci'
+    sh 'npm test'
+  }
+}pipeline {
     agent any
     triggers {
         githubPush()
@@ -14,6 +37,12 @@ pipeline {
             }
         }
         stage('Build & Test') {
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    args  '-u root'
+                }
+            }
             steps {
                 sh 'npm ci'
                 sh 'npm run lint'
